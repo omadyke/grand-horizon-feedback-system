@@ -150,7 +150,7 @@ googleButton.addEventListener("click", async (e) => {
 
         const response = await fetch(
 
-            "http://localhost:3000/review",
+            "https://grand-horizon-feedback-system.onrender.com",
 
             {
 
@@ -228,7 +228,7 @@ submitButton.addEventListener("click", async () => {
 
         const response = await fetch(
 
-            "https://grand-horizon-feedback-system.onrender.com/review",
+            "https://grand-horizon-feedback-system.onrender.com",
 
             {
 
