@@ -1,0 +1,380 @@
+/* ======================================
+   STAYFLOW REVIEWS V7
+   Grand Horizon Hotel
+====================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:Inter,Segoe UI,Arial,sans-serif;
+
+    background:#f6f3ed;
+
+    color:#2f2f2f;
+
+}
+
+.page{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:25px;
+
+}
+
+.card{
+
+    width:100%;
+
+    max-width:430px;
+
+    background:#ffffff;
+
+    border-radius:26px;
+
+    padding:35px 28px;
+
+    box-shadow:0 20px 50px rgba(0,0,0,.08);
+
+    text-align:center;
+
+}
+
+/* ==========================
+LOGO
+========================== */
+
+.logo-section{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:12px;
+
+    margin-bottom:8px;
+
+}
+
+.logo-section h1{
+
+    font-size:22px;
+
+    letter-spacing:3px;
+
+    color:#b68d40;
+
+    font-weight:700;
+
+}
+
+.line{
+
+    width:45px;
+
+    height:1px;
+
+    background:#d8c7a2;
+
+}
+
+.luxury-text{
+
+    color:#9a9a9a;
+
+    font-size:13px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    margin-bottom:30px;
+
+}
+
+/* ==========================
+HEADINGS
+========================== */
+
+#welcome-title{
+
+    font-size:28px;
+
+    margin-bottom:14px;
+
+}
+
+.intro-text{
+
+    color:#666;
+
+    line-height:1.7;
+
+    margin-bottom:35px;
+
+    font-size:15px;
+
+}
+
+/* ==========================
+RATING
+========================== */
+
+.rating-section h3{
+
+    font-size:22px;
+
+    margin-bottom:10px;
+
+}
+
+.rating-subtitle{
+
+    color:#777;
+
+    margin-bottom:28px;
+
+}
+
+.stars{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:12px;
+
+}
+
+.star{
+
+    border:none;
+
+    background:none;
+
+    font-size:55px;
+
+    color:#d8d8d8;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.star:hover{
+
+    transform:scale(1.15);
+
+    color:#d4af37;
+
+}
+
+.star.active{
+
+    color:#d4af37;
+
+}
+
+/* ==========================
+PANELS
+========================== */
+
+.panel{
+
+    animation:fade .35s ease;
+
+}
+
+.hidden{
+
+    display:none;
+
+}
+
+.emoji{
+
+    font-size:55px;
+
+    margin-bottom:18px;
+
+}
+
+.panel h2{
+
+    font-size:28px;
+
+    margin-bottom:15px;
+
+}
+
+.panel p{
+
+    color:#666;
+
+    line-height:1.7;
+
+    margin-bottom:15px;
+
+}
+
+/* ==========================
+TEXTAREA
+========================== */
+
+textarea{
+
+    width:100%;
+
+    min-height:150px;
+
+    border:1px solid #ddd;
+
+    border-radius:16px;
+
+    padding:18px;
+
+    resize:none;
+
+    font-size:15px;
+
+    margin-top:18px;
+
+    margin-bottom:22px;
+
+    font-family:inherit;
+
+}
+
+textarea:focus{
+
+    outline:none;
+
+    border-color:#d4af37;
+
+}
+
+/* ==========================
+BUTTON
+========================== */
+
+.primary-btn{
+
+    width:100%;
+
+    border:none;
+
+    background:#b68d40;
+
+    color:white;
+
+    padding:17px;
+
+    border-radius:15px;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    font-weight:600;
+
+}
+
+.primary-btn:hover{
+
+    background:#a67d2e;
+
+    transform:translateY(-2px);
+
+}
+
+/* ==========================
+ANIMATION
+========================== */
+
+@keyframes fade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(12px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ==========================
+MOBILE
+========================== */
+
+@media(max-width:480px){
+
+    .page{
+
+        padding:18px;
+
+    }
+
+    .card{
+
+        padding:28px 22px;
+
+        border-radius:22px;
+
+    }
+
+    .logo-section h1{
+
+        font-size:18px;
+
+    }
+
+    #welcome-title{
+
+        font-size:24px;
+
+    }
+
+    .rating-section h3{
+
+        font-size:20px;
+
+    }
+
+    .star{
+
+        font-size:48px;
+
+    }
+
+    .panel h2{
+
+        font-size:24px;
+
+    }
+
+}
