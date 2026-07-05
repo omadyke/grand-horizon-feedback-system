@@ -1,6 +1,6 @@
 // =====================================
 // StayFlow Reviews V8
-// Frontend -> Express Backend -> n8n
+// Frontend -> Render Backend -> n8n
 // =====================================
 
 // ----------------------------
@@ -24,13 +24,10 @@ const ratingSection = document.querySelector(".rating-section");
 const starButtons = document.querySelectorAll(".star");
 
 const happyPanel = document.getElementById("happy-panel");
-
 const googleButton = document.getElementById("google-btn");
 
 const feedbackPanel = document.getElementById("feedback-panel");
-
 const feedbackBox = document.getElementById("feedback-box");
-
 const submitButton = document.getElementById("submit-feedback");
 
 const thankyouPanel = document.getElementById("thankyou-panel");
@@ -61,13 +58,10 @@ function initialize() {
     feedbackPanel.classList.add("hidden");
 
     if (thankyouPanel) {
-
         thankyouPanel.classList.add("hidden");
-
     }
 
     attachStarEvents();
-
 }
 
 // ----------------------------
@@ -90,9 +84,7 @@ function attachStarEvents() {
 
                 happyPanel.classList.remove("hidden");
 
-            }
-
-            else {
+            } else {
 
                 feedbackPanel.classList.remove("hidden");
 
@@ -116,9 +108,7 @@ function highlightStars(rating) {
 
             btn.classList.add("active");
 
-        }
-
-        else {
+        } else {
 
             btn.classList.remove("active");
 
@@ -129,7 +119,7 @@ function highlightStars(rating) {
 }
 
 // ----------------------------
-// GOOGLE REVIEW
+// POSITIVE REVIEW
 // ----------------------------
 
 googleButton.addEventListener("click", async (e) => {
@@ -145,27 +135,19 @@ googleButton.addEventListener("click", async (e) => {
     };
 
     console.log("Sending positive review...");
+    console.log(payload);
 
     try {
 
         const response = await fetch(
-
-            "https://grand-horizon-feedback-system.onrender.com",
-
+            "https://grand-horizon-feedback-system.onrender.com/review",
             {
-
                 method: "POST",
-
                 headers: {
-
                     "Content-Type": "application/json"
-
                 },
-
                 body: JSON.stringify(payload)
-
             }
-
         );
 
         const result = await response.json();
@@ -176,9 +158,7 @@ googleButton.addEventListener("click", async (e) => {
 
             window.open("https://maps.google.com", "_blank");
 
-        }
-
-        else if (result.success && result.action === "thankyou") {
+        } else if (result.success && result.action === "thankyou") {
 
             happyPanel.classList.add("hidden");
 
@@ -188,26 +168,24 @@ googleButton.addEventListener("click", async (e) => {
 
             }
 
-        }
+        } else {
 
-        else {
-
-            console.error("Unexpected response:", result);
+            console.error(result);
 
         }
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(error);
+
+        alert("Unable to connect to the server.");
 
     }
 
 });
 
 // ----------------------------
-// NEGATIVE FEEDBACK
+// NEGATIVE REVIEW
 // ----------------------------
 
 submitButton.addEventListener("click", async () => {
@@ -227,23 +205,14 @@ submitButton.addEventListener("click", async () => {
     try {
 
         const response = await fetch(
-
-            "https://grand-horizon-feedback-system.onrender.com",
-
+            "https://grand-horizon-feedback-system.onrender.com/review",
             {
-
                 method: "POST",
-
                 headers: {
-
                     "Content-Type": "application/json"
-
                 },
-
                 body: JSON.stringify(payload)
-
             }
-
         );
 
         const result = await response.json();
@@ -260,25 +229,21 @@ submitButton.addEventListener("click", async () => {
 
             }
 
-        }
-
-        else if (result.success && result.action === "google") {
+        } else if (result.success && result.action === "google") {
 
             window.open("https://maps.google.com", "_blank");
 
-        }
+        } else {
 
-        else {
-
-            console.error("Unexpected response:", result);
+            console.error(result);
 
         }
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(error);
+
+        alert("Unable to connect to the server.");
 
     }
 
