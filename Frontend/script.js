@@ -47,9 +47,9 @@ initialize();
 function initialize() {
 
     welcomeTitle.textContent =
-        guestName
-            ? `Welcome, ${guestName}`
-            : "Welcome, Valued Guest";
+    guestName
+        ? `Hello, ${guestName}`
+        : "Hello, Valued Guest";
 
     welcomeMessage.textContent =
         "Thank you for staying at Grand Horizon Hotel. We hope your stay was memorable.";
