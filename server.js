@@ -64,6 +64,79 @@ app.post("/generate-review-token", (req, res) => {
 });
 
 // ----------------------------------
+// REVIEW DETAILS ENDPOINT
+// ----------------------------------
+
+app.post("/review-details", async (req, res) => {
+
+    console.log("================================");
+    console.log("Review token lookup:");
+    console.log(req.body);
+    console.log("================================");
+
+    try {
+
+        console.log("Requesting guest details from n8n...");
+
+        const response = await axios.post(
+
+            "https://species-entrench-husband.ngrok-free.dev/webhook/review-details",
+
+            req.body,
+
+            {
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                timeout: 10000
+            }
+
+        );
+
+        console.log("✅ Guest details received!");
+        console.log(response.data);
+
+        res.status(200).json(response.data);
+
+    }
+
+    catch (error) {
+
+        console.log("================================");
+        console.log("❌ ERROR FETCHING REVIEW DETAILS");
+        console.log("================================");
+
+        if (error.response) {
+
+            console.log("Status:", error.response.status);
+            console.log("Response:", error.response.data);
+
+        }
+
+        else if (error.request) {
+
+            console.log("No response received from n8n.");
+
+        }
+
+        else {
+
+            console.log(error.message);
+
+        }
+
+        res.status(500).json({
+
+            success: false,
+            message: "Unable to retrieve review details."
+
+        });
+
+    }
+
+});
+
+// ----------------------------------
 // REVIEW ENDPOINT
 // ----------------------------------
 

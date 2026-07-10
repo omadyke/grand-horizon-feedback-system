@@ -9,8 +9,10 @@
 
 const params = new URLSearchParams(window.location.search);
 
-const guestId = params.get("guestId");
-const guestName = params.get("guestName");
+const reviewToken = params.get("token");
+
+let guestId = null;
+let guestName = null;
 
 // ----------------------------
 // DOM ELEMENTS
@@ -39,17 +41,86 @@ const thankyouPanel = document.getElementById("thankyou-panel");
 let selectedRating = 0;
 
 // ----------------------------
+// LOAD GUEST DETAILS
+// ----------------------------
+
+async function loadGuestDetails() {
+
+    if (!reviewToken) {
+
+        welcomeTitle.textContent = "Invalid Review Link";
+
+        welcomeMessage.textContent =
+            "This review link is invalid or incomplete.";
+
+        ratingSection.classList.add("hidden");
+
+        return;
+
+    }
+
+    try {
+
+        const response = await fetch(
+            "https://grand-horizon-feedback-system.onrender.com/review-details",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    token: reviewToken
+                })
+            }
+        );
+
+        const result = await response.json();
+
+        console.log("Guest Details:", result);
+
+        if (!result.success) {
+
+            welcomeTitle.textContent = "Review Link Expired";
+
+            welcomeMessage.textContent =
+                "This review link is no longer valid.";
+
+            ratingSection.classList.add("hidden");
+
+            return;
+
+        }
+
+        guestId = result.guestId;
+        guestName = result.guestName;
+
+        welcomeTitle.textContent = `Hello, ${guestName}`;
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        welcomeTitle.textContent = "Connection Error";
+
+        welcomeMessage.textContent =
+            "Unable to verify your review link.";
+
+        ratingSection.classList.add("hidden");
+
+    }
+
+}
+// ----------------------------
 // INITIALIZE
 // ----------------------------
 
 initialize();
 
-function initialize() {
+async function initialize() {
 
-    welcomeTitle.textContent =
-    guestName
-        ? `Hello, ${guestName}`
-        : "Hello, Valued Guest";
+    welcomeTitle.textContent = "Loading...";
 
     welcomeMessage.textContent =
         "Thank you for staying at Grand Horizon Hotel. We hope your stay was memorable.";
@@ -62,6 +133,7 @@ function initialize() {
     }
 
     attachStarEvents();
+    await loadGuestDetails();
 }
 
 // ----------------------------
