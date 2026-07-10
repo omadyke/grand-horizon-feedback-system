@@ -98,8 +98,6 @@ app.post("/review-details", async (req, res) => {
         console.dir(response.data, { depth: null });
         console.log("================================");
 
-res.status(200).json(response.data);   
-
         res.status(200).json(response.data);
 
     }
