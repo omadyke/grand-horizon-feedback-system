@@ -93,8 +93,10 @@ app.post("/review-details", async (req, res) => {
 
         );
 
-        console.log("✅ Guest details received!");
-        console.log(response.data);
+        console.log("================================");
+        console.log("REVIEW DETAILS RESPONSE");
+        console.log(JSON.stringify(response.data, null, 2));
+        console.log("================================");
 
         res.status(200).json(response.data);
 
