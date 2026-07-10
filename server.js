@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
+const crypto = require("crypto");
 
 const app = express();
 
@@ -17,6 +18,49 @@ app.use(express.json());
 
 app.get("/", (req, res) => {
     res.send("✅ StayFlow Backend is running.");
+});
+
+// ----------------------------------
+// GENERATE REVIEW TOKEN
+// ----------------------------------
+
+app.post("/generate-review-token", (req, res) => {
+
+    try {
+
+        // Generate a secure random UUID
+        const reviewToken = crypto.randomUUID();
+
+        // Token expires in 14 days
+        const expiry = new Date();
+        expiry.setDate(expiry.getDate() + 14);
+
+        res.status(200).json({
+
+            success: true,
+            reviewToken,
+            expiresAt: expiry.toISOString()
+
+        });
+
+    }
+
+    catch (error) {
+
+        console.log("================================");
+        console.log("❌ ERROR GENERATING TOKEN");
+        console.log(error);
+        console.log("================================");
+
+        res.status(500).json({
+
+            success: false,
+            message: "Unable to generate review token."
+
+        });
+
+    }
+
 });
 
 // ----------------------------------
