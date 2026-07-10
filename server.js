@@ -95,8 +95,10 @@ app.post("/review-details", async (req, res) => {
 
         console.log("================================");
         console.log("REVIEW DETAILS RESPONSE");
-        console.log(JSON.stringify(response.data, null, 2));
+        console.dir(response.data, { depth: null });
         console.log("================================");
+
+res.status(200).json(response.data);   
 
         res.status(200).json(response.data);
 
