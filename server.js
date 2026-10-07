@@ -155,7 +155,7 @@ app.post("/review", async (req, res) => {
 
         const response = await axios.post(
 
-            "https://species-entrench-husband.ngrok-free.dev/webhook/review-submit",
+            "https://communicatory-precipitously-annika.ngrok-free.dev/webhook/review-details",
 
             req.body,
 
